@@ -1,0 +1,46 @@
+{
+  "name": "movieapp",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~4.0.0",
+    "@expo/vector-icons": "^14.0.4",
+    "@react-navigation/drawer": "^7.0.6",
+    "@react-navigation/native": "^7.0.3",
+    "@react-navigation/stack": "^7.0.5",
+    "@shoutem/animation": "^0.17.0",
+    "@shoutem/theme": "^0.14.0",
+    "@shoutem/ui": "^2.0.3",
+    "axios": "^1.7.7",
+    "expo": "^52.0.14",
+    "expo-splash-screen": "~0.29.13",
+    "expo-status-bar": "~2.0.0",
+    "glob": "^11.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "^0.76.3",
+    "react-native-elements": "^3.4.3",
+    "react-native-gesture-handler": "^2.20.2",
+    "react-native-linear-gradient": "~2.5.6",
+    "react-native-paper": "^5.12.5",
+    "react-native-photo-view": "shoutem/react-native-photo-view#0ffa1481f6b6cb8663cb291b7db1d6644440584d",
+    "react-native-reanimated": "^3.16.2",
+    "react-native-safe-area-context": "^4.12.0",
+    "react-native-screens": "^4.1.0",
+    "react-native-vector-icons": "~6.6.0",
+    "react-native-web": "~0.19.13",
+    "react-native-web-webview": "^1.0.2",
+    "react-native-webview": "^13.12.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
