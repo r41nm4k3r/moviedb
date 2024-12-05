@@ -1,5 +1,5 @@
 // src/Navigation.js
-import React, { useState } from 'react';
+import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,12 +12,11 @@ import SettingsScreen from './SettingsScreen';
 import DetailsScreen from './DetailsScreen';
 import ActorDetailsScreen from './ActorDetailsScreen';
 import CustomDrawerContent from './CustomDrawerContent';
-import SearchOverlay from './SearchOverlay'; // Import SearchOverlay
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-function HomeStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay }) {
+function HomeStack({ navigation, toggleTheme, isDarkTheme }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -53,7 +52,7 @@ function HomeStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay }
   );
 }
 
-function MoviesStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay }) {
+function MoviesStack({ navigation, toggleTheme, isDarkTheme }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -89,7 +88,7 @@ function MoviesStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay
   );
 }
 
-function TVStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay }) {
+function TVStack({ navigation, toggleTheme, isDarkTheme }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -126,15 +125,10 @@ function TVStack({ navigation, toggleTheme, isDarkTheme, toggleSearchOverlay }) 
 }
 
 export default function Navigation() {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [searchVisible, setSearchVisible] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
-  };
-
-  const toggleSearchOverlay = () => {
-    setSearchVisible(!searchVisible);
   };
 
   return (
@@ -142,7 +136,7 @@ export default function Navigation() {
       <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
         <Drawer.Screen
           name="Home"
-          component={(props) => <HomeStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} toggleSearchOverlay={toggleSearchOverlay} />}
+          component={(props) => <HomeStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
           options={{
             headerShown: true,
             title: 'Home',
@@ -155,7 +149,7 @@ export default function Navigation() {
                 <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
                   <Ionicons name={isDarkTheme ? 'sunny' : 'moon'} size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={toggleSearchOverlay}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed!')}>
                   <Ionicons name="search" size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
               </View>
@@ -164,7 +158,7 @@ export default function Navigation() {
         />
         <Drawer.Screen
           name="Movies"
-          component={(props) => <MoviesStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} toggleSearchOverlay={toggleSearchOverlay} />}
+          component={(props) => <MoviesStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
           options={{
             headerShown: true,
             title: 'Movies',
@@ -177,7 +171,7 @@ export default function Navigation() {
                 <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
                   <Ionicons name={isDarkTheme ? 'sunny' : 'moon'} size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={toggleSearchOverlay}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed!')}>
                   <Ionicons name="search" size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
               </View>
@@ -186,7 +180,7 @@ export default function Navigation() {
         />
         <Drawer.Screen
           name="TV Series"
-          component={(props) => <TVStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} toggleSearchOverlay={toggleSearchOverlay} />}
+          component={(props) => <TVStack {...props} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />}
           options={{
             headerShown: true,
             title: 'TV Series',
@@ -199,7 +193,7 @@ export default function Navigation() {
                 <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
                   <Ionicons name={isDarkTheme ? 'sunny' : 'moon'} size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={toggleSearchOverlay}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed!')}>
                   <Ionicons name="search" size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
               </View>
@@ -221,7 +215,7 @@ export default function Navigation() {
                 <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 15 }}>
                   <Ionicons name={isDarkTheme ? 'sunny' : 'moon'} size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={toggleSearchOverlay}>
+                <TouchableOpacity onPress={() => console.log('Search icon pressed!')}>
                   <Ionicons name="search" size={24} color={isDarkTheme ? '#fff' : '#000'} />
                 </TouchableOpacity>
               </View>
@@ -229,7 +223,6 @@ export default function Navigation() {
           }}
         />
       </Drawer.Navigator>
-      <SearchOverlay visible={searchVisible} onClose={toggleSearchOverlay} navigation={navigation} />
     </NavigationContainer>
   );
 }
